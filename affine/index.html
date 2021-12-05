@@ -1,0 +1,117 @@
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Affine tranformations</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- MY FONTS -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="css/index.min.css">
+</head>
+
+<body>
+	<header>
+		<nav>
+				<div class="container">
+						<ul class="menu">
+								<li class="menu_logo menu_item"><a href="../index.html" class="menu_link menu_link-main"><i class="fab fa-adn"></i> arman</a></li>
+								<li class="menu_item"><a href="../fractals/julia.html" class="menu_link">Fractal</a></li>
+								<li class="menu_item"><a href="../models/index.html" class="menu_link">RGB/CMYK</a></li>
+								<li class="menu_item"><a href="../affine/index.html" class="menu_link">Triangle</a></li>
+						</ul>
+				</div>
+				<div class="hamburger">
+						<span></span>
+						<span></span>
+						<span></span>
+				</div>
+		</nav>
+	</header>
+	<div id="graphPage-link" class="graphPage">
+		<div class="container">
+			<div class="graphPage__field">
+					<div class="graphPage__item graphPage__item-graph">
+						<canvas class="graph" id="canvasAffineTransform" width="600" height="600"></canvas>
+					</div>
+					<div class="graphPage__item graphPage__item-values">
+						<div class="values_container">
+							<h2 class="title">Triangular coordinates</h2>
+							<div class="values">
+								<div class="values__item">
+									<label>X1</label>
+									<input  type="number" id="triangleX1" class="triangleCordinate" value="0" step="0.1" />
+								</div>
+								<div class="values__item">
+									<label>Y1</label>
+									<input  type="number" id="triangleY1" class="triangleCordinate" value="1" step="0.1" />
+								</div>
+								<div class="values__item">
+									<label>X2</label>
+									<input  type="number" id="triangleX2" class="triangleCordinate" value="3" step="0.1" />
+								</div>
+								<div class="values__item">
+									<label>Y2</label>
+									<input  type="number" id="triangleY2" class="triangleCordinate" value="3" step="0.1" />
+								</div>
+								<div class="values__item">
+									<label>X3</label>
+									<input  type="number" id="triangleX3" class="triangleCordinate" value="0" step="0.1" />
+								</div>
+								<div class="values__item">
+									<label>Y3</label>
+									<input  type="number" id="triangleY3" class="triangleCordinate" value="3" step="0.1" />
+								</div>
+							</div>
+
+							<h2 class="title">Rotate by angle</h2>
+							<div class="values">
+								<div class="values__item values__item-solo">
+									<label>&#945</label>
+									<input  type="number" id="Angle" class="numberAngle" value="0" step="0.1" />
+								</div>
+							</div>
+
+							<h2 class="title">Translate</h2>
+							<div class="values">
+								<div class="values__item values__item-solo">
+									<label>N</label>
+									<input  type="number" class="numberTranslation" id="TranslationX" value="0" step="1" />
+								</div>
+								<div class="values__item values__item-solo">
+									<label>M</label>
+									<input  type="number" class="numberTranslation" id="TranslationY" value="0" step="1" />
+								</div>
+							</div>
+							<div class="btn-div"><button class="btn-info" data-modal>INFO</button></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>    
+	</div>
+
+	<div class="modal">
+		<div class="modal__dialog">
+				<div class="modal__content">
+						<form action="#">
+								<div data-close class="modal__close">&times;</div>
+								<div class="modal__title">Афінним називається перетворення, що має такі властивостями:</div>
+								<div class="modal__subtitle">- будь-яке афінне перетворення може бути представлене як послідовність операцій з числа найпростіших: зсув, розтягнення/стиснення, поворот</div>
+								<div class="modal__subtitle">- зберігаються прямі лінії, паралельність прямих, відношення довжин відрізків, що лежать на одній прямій, і відношення площ фігур</div>
+
+						</form>
+				</div>
+		</div>
+	</div>
+	<script src="affineTransform.js"></script>
+	<script src="../script.js"></script>
+
+</body>
+</html>

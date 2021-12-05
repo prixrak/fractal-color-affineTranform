@@ -1,0 +1,152 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Color models</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+	<!-- Google Fonts -->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+	<!-- JQuery -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap tooltips -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<!-- MDB core JavaScript -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+	<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+
+    	<div class="row">
+    		<div class="col-md-4">
+
+    			<button type="button" onclick="location.href='../fractals/mandelbrot.html'" id="fractalButton" class="headerButton btn">
+    				Фрактали
+    			</button>
+    		</div>
+    		<div class="col-md-4">
+
+    			<button type="button" id="colorSchemaButton" class="headerButton btn disabled">
+    				Зміна колірної схеми
+    			</button>
+    		</div>
+    		<div class="col-md-4">
+
+    			<button type="button" onclick="location.href='../affine/index.html';" id="AffineTransformationButton" class="headerButton btn">
+    				Афінні перетворення
+    			</button>
+    		</div>
+    	</div>
+
+        <br>
+
+    	<div class="row">
+    		<div class="col-md-4 card card-body bg-light">
+				<div class="custom-file"  style="overflow: hidden">
+					<input id="fileInput" type="file" class="custom-file-input" name="" onchange="loadImageFromFile()" accept="image/*">
+					<label class="custom-file-label" for="customFileLang">Виберіть файл</label>
+				</div>
+                <br>
+
+				<div class="container bg-light">
+					<div class="row ">
+						<div class="col bg-light h6">
+							Значення кольорів:
+						</div>
+					</div>
+					<div class="col">
+                        <div class="row form-check" id="blueDiv">
+                            <label for="blueRange">Відхилення від синього</label>
+                            <input type="range" class="custom-range" min="0" max="180" value="0" id="hueRange">
+                            <label for="saturationRange">Насиченість по синьому</label>
+                            <input type="range" class="custom-range" min="-100" max="100" value="0" id="saturationRange">
+                            <label for="brightnessRange">Яскравість по синьому</label>
+                            <input type="range" class="custom-range" min="-100" max="100" value="0" id="brightnessRange">
+                        </div>
+						<div class="row h6">RGB: <span id="RGBstr"></span></div>
+						<div class="row h6">HSV: <span id="HSVstr"></span></div>
+						<div class="row h6">CMYK: <span id="CMYKstr"></span></div>
+					</div>
+				</div>
+
+				<button type="button" id="selectionRemoval" class="btn btn-outline-secondary rounded-pill">
+					Зняти виділення області
+				</button>
+				<button type="button" class="btn btn-outline-secondary rounded-pill" data-toggle="modal" data-target="#helpUserModal">
+					Допомога
+				</button>
+				<button type="button" class="btn btn-outline-secondary rounded-pill" onclick="location.href='../index.html'">
+					&#9664; Назад
+				</button>
+    		</div>
+    		<div id="canvasDiv" class="col-md-8 card card-body bg-light">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>
+                            Оригінальне зображення:
+                        </p>
+                        <div id="canvasOrigDiv">
+                            <canvas id="canvasOrig" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Зображення зі зміненим значенням по синьому:
+                        </p>
+                        <div id="canvasColorDiv">
+                            <canvas id="canvasColor" width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="helpUserModal" tabindex="-1" role="dialog" aria-labelledby="helpUserModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title" id="helpUserModal">Колірні моделі</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			</div>
+			<div class="modal-body">
+                CMYK - субтрактивна модель, вона використовується для підготовки не екранних, а  друкованих  зображень,
+                тобто  для  пристроїв,  які  реалізують  принцип поглинання (віднімання) кольорів. Базові кольори моделі CMYK:
+                C - Cyan (блакитний), M - Magenta (пурпурний), Y - Yellow (жовтий) , K - Black (чорний).
+                <br><br>
+                Колірна модель HSV (hue (тон), saturation (насиченість), value (значення кольору)) була розроблена з метою
+                забезпечення художника засобами інтуїтивного вибору кольору. HSV ближче до людського сприйняття кольорів.
+                <br><br>
+                Для зміни яскравості та насиченості зображення чи фрагментів використовуйте повзунок "Значення по синьому" під кнопкою вибору файлу.
+                <br><br>
+                Для вибору фрагментів зображення виділіть частини зображення, проводячи курсором від одного кута діагоналі
+                прямокутного виділення до іншого. Для зміни яскравості цілого зображення після вибору фрагментів натисніть кнопку
+                "Зняти виділення області".
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" onclick="location.href='../theory/models.html'">Теоретичні відомості</button>
+			    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
+    <img src="img/model_example.jpeg" id="hiddenImg" style="display: none;" />
+
+	<script language="javascript" type="text/javascript" src="models.js"></script>
+</body>
+</html>
