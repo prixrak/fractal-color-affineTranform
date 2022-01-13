@@ -15,7 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  /* открытие окна */
     function openModal(modalSelector) {
         const modal = document.querySelector(modalSelector);
         modal.classList.add('show');
@@ -24,7 +23,6 @@ window.addEventListener('DOMContentLoaded', () => {
         
     }
 
-    /* закрытие окна */
     function closeModal(modalSelector) {
         const modal = document.querySelector(modalSelector);
         modal.classList.add('hide');
@@ -33,7 +31,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     function modal(triggerSelector, modalSelector) {
-        //Modal window
         const modal = document.querySelector(modalSelector),
             modalTrigger = document.querySelectorAll(triggerSelector);
 
@@ -42,14 +39,12 @@ window.addEventListener('DOMContentLoaded', () => {
         });
 
 
-        /* закрытие окна, если нажатие происходит вне окна (на подложку) */
         modal.addEventListener('click', (e) => {
             if (e.target === modal || e.target.getAttribute('data-close') == '') {
                 closeModal(modalSelector);
             }
         });
 
-        /* закрытие окна при нажатии на кнопку esc */
         document.addEventListener('keydown', (e) => {
             if (e.code === "Escape" && modal.classList.contains('show')) {
                 closeModal(modalSelector);

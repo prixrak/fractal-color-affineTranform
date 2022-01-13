@@ -3,19 +3,14 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>Julia Set</title>
+	<title>Fractal</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Font Awesome -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-	<!-- JQuery -->
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
 	<!-- MY FONTS -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Montserrat:wght@500&display=swap" rel="stylesheet">
-
 	<link rel="stylesheet" href="css/index.min.css">
 </head>
 
@@ -25,7 +20,7 @@
 				<div class="container">
 						<ul class="menu">
 								<li class="menu_logo menu_item"><a href="../index.html" class="menu_link menu_link-main"><i class="fab fa-adn"></i> arman</a></li>
-								<li class="menu_item"><a href="../fractals/julia.html" class="menu_link">Fractal</a></li>
+								<li class="menu_item"><a href="../fractals/index.html" class="menu_link">Fractal</a></li>
 								<li class="menu_item"><a href="../models/index.html" class="menu_link">RGB/CMYK</a></li>
 								<li class="menu_item"><a href="../affine/index.html" class="menu_link">Triangle</a></li>
 						</ul>
@@ -40,7 +35,7 @@
 	<div id="fractalPage-link" class="fractalPage">
 		<div class="container">
 			<div class="fractalPage__field">
-					<div id="canvasDiv" class="fractalPage__item fractalPage__item-fractal">
+					<div id="canvasContainer" class="fractalPage__item fractalPage__item-fractal">
 					</div>
 					<div class="fractalPage__item fractalPage__item-values">
 						<div class="values_container">
@@ -48,11 +43,11 @@
 							<div class="values">
 								<div class="values__item">
 									<label>CX</label>
-									<input  type="number" id="CXMOUSE" class="triangleCordinate" value="0" readonly />
+									<input  type="number" id="cx" class="triangleCordinate" value="0" readonly />
 								</div>
 								<div class="values__item">
 									<label>CY</label>
-									<input  type="number" id="CYMOUSE" class="triangleCordinate" value="0" readonly />
+									<input  type="number" id="cy" class="triangleCordinate" value="0" readonly />
 								</div>
 							</div>
 
@@ -60,19 +55,19 @@
 							<div class="values">
 								<div class="values__item">
 									<label>Colored</label>
-									<input  type="radio" name="exampleRadios" id="rainbowScheme" id="Angle"  value="option1" checked />
+									<input  type="radio" name="exampleRadios" id="coloredMode" id="Angle"  value="option1" checked />
 								</div>
 								<div class="values__item">
 									<label>Grey</label>
-									<input type="radio" name="exampleRadios" id="monochromeScheme" value="option1" unchecked>
+									<input type="radio" name="exampleRadios" id="greyMode" value="option1" unchecked>
 								</div>
 								<div class="values__item">
 									<label>Light</label>
-									<input type="radio" name="exampleRadios" id="lightScheme" value="option1" unchecked>
+									<input type="radio" name="exampleRadios" id="lightMode" value="option1" unchecked>
 								</div>
 								<div class="values__item">
 									<label>Dark</label>
-									<input type="radio" name="exampleRadios" id="darkScheme" value="option1" unchecked>
+									<input type="radio" name="exampleRadios" id="darkMode" value="option1" unchecked>
 								</div>
 							</div>
 							<div class="btn-div"><button class="btn-info" data-modal>INFO</button></div>
@@ -94,10 +89,8 @@
 				</div>
 		</div>
 	</div>
-
-
-
-	<script src="julia.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.min.js"></script>
+	<script src="fractal.js"></script>
 	<script src="../script.js"></script>
 </body>
 </html>
